@@ -11,6 +11,7 @@ import ToasterProvider from "@/app/providers/ToasterProvider";
 import "./globals.css";
 import ClientOnly from "./components/ClientOnly";
 import getCurrentUser from "./actions/getCurrentUser";
+import Footer from "./components/footer/Footer";
 
 export const metadata = {
   title: "HomeStay Haven - Your Gateway to Affordable Living",
@@ -47,6 +48,7 @@ export default async function RootLayout({
           <SearchModal />
           <RentModal />
           <Navbar currentUser={currentUser} />
+          <Footer />
         </ClientOnly>
         <div className="pb-20 pt-28">{children}</div>
       </body>

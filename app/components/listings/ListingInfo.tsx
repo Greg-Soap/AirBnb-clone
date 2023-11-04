@@ -4,7 +4,7 @@ import dynamic from "next/dynamic";
 import { IconType } from "react-icons";
 
 import useCountries from "@/app/hooks/useCountries";
-import { SafeUser } from "@/app/types";
+import { SafeReservation, SafeUser } from "@/app/types";
 
 import Avatar from "../Avatar";
 import ListingCategory from "./ListingCategory";
@@ -19,6 +19,7 @@ interface ListingInfoProps {
   guestCount: number;
   roomCount: number;
   bathroomCount: number;
+  
   category:
     | {
         icon: IconType;
@@ -33,6 +34,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
   user,
   description,
   guestCount,
+  
   roomCount,
   bathroomCount,
   category,
@@ -89,7 +91,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
         {description}
       </div>
       <hr />
-      <Map center={coordinates} />
+      {/* <Map center={coordinates} /> */}
     </div>
   );
 };
