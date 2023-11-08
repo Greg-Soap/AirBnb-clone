@@ -59,13 +59,13 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
       <hr />
       <div className="p-4">
         {paymentUrl ? (
-          <Link href={paymentUrl} target={paymentUrl}>
+          <a href={paymentUrl} target={paymentUrl} rel="noopener noreferrer">
             <Button
               disabled={disabled}
               label={reservation ? "Reserved" : "Reserve"}
               onClick={onSubmit}
             />
-          </Link>
+          </a>
         ) : (
           <Button
             disabled={disabled}
