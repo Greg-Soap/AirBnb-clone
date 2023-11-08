@@ -1,19 +1,4 @@
-import { Reservation, User } from "@prisma/client";
-export type Listing = {
-  id: string;
-  title: string;
-  description: string;
-  imageSrc: string;
-  createdAt: Date;
-  category: string;
-  roomCount: number;
-  bathroomCount: number;
-  guestCount: number;
-  locationValue: string;
-  userId: string;
-  price: number;
-  paymentCode?: string | null;
-};
+import { Listing, Reservation, User } from "@prisma/client";
 
 export type SafeListing = Omit<Listing, "createdAt"> & {
   createdAt: string;

@@ -16,7 +16,7 @@ interface ListingReservationProps {
   reservation?: SafeReservation;
   disabled?: boolean;
   disabledDates: Date[];
-  paymentUrl?: string | null;
+  paymentUrl: string;
 }
 
 const ListingReservation: React.FC<ListingReservationProps> = ({

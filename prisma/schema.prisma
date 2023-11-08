@@ -58,7 +58,7 @@ model Listing {
   locationValue String
   userId String @db.ObjectId
   price Int
-  paymentCode String?
+  paymentCode String
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   reservations Reservation[]
