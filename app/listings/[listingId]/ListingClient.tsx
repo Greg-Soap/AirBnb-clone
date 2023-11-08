@@ -153,6 +153,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
                 disabled={isLoading}
                 disabledDates={disabledDates}
                 reservation={currentUserReservation}
+                paymentUrl={listing.paymentCode}
               />
             </div>
           </div>

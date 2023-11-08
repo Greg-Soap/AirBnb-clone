@@ -5,6 +5,7 @@ import { Range } from "react-date-range";
 import Button from "../Button";
 import Calendar from "../inputs/Calendar";
 import { SafeReservation } from "@/app/types";
+import Link from "next/link";
 
 interface ListingReservationProps {
   price: number;
@@ -15,6 +16,7 @@ interface ListingReservationProps {
   reservation?: SafeReservation;
   disabled?: boolean;
   disabledDates: Date[];
+  paymentUrl: string | null;
 }
 
 const ListingReservation: React.FC<ListingReservationProps> = ({
@@ -26,6 +28,7 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
   onSubmit,
   disabled,
   disabledDates,
+  paymentUrl,
 }) => {
   return (
     <div
@@ -55,11 +58,21 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
       />
       <hr />
       <div className="p-4">
-        <Button
-          disabled={disabled}
-          label={reservation ? "Reserved" : "Reserve"}
-          onClick={onSubmit}
-        />
+        {paymentUrl ? (
+          <Link href={paymentUrl} target={paymentUrl}>
+            <Button
+              disabled={disabled}
+              label={reservation ? "Reserved" : "Reserve"}
+              onClick={onSubmit}
+            />
+          </Link>
+        ) : (
+          <Button
+            disabled={disabled}
+            label={reservation ? "Reserved" : "Reserve"}
+            onClick={onSubmit}
+          />
+        )}
       </div>
       <hr />
       <div

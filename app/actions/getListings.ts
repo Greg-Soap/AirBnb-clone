@@ -9,6 +9,7 @@ export interface IListingsParams {
   endDate?: string;
   locationValue?: string;
   category?: string;
+  paymentCode?: string;
 }
 
 export default async function getListings(params: IListingsParams) {
