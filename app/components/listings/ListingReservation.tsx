@@ -30,6 +30,7 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
   disabledDates,
   paymentUrl,
 }) => {
+  console.log(paymentUrl);
   return (
     <div
       className="
@@ -59,7 +60,7 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
       <hr />
       <div className="p-4">
         {paymentUrl ? (
-          <a href={paymentUrl} target={paymentUrl} rel="noopener noreferrer">
+          <a href={paymentUrl} target={"_blank"} rel="noopener noreferrer">
             <Button
               disabled={disabled}
               label={reservation ? "Reserved" : "Reserve"}
