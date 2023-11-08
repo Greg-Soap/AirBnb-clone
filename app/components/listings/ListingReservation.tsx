@@ -30,7 +30,7 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
   disabledDates,
   paymentUrl,
 }) => {
-  console.log(paymentUrl);
+  console.log("payment is" + paymentUrl);
   return (
     <div
       className="

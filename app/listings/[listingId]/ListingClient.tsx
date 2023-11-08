@@ -57,6 +57,8 @@ const ListingClient: React.FC<ListingClientProps> = ({
     return categories.find((items) => items.label === listing.category);
   }, [listing.category]);
 
+  console.log("Listing code is " + listing.paymentCode);
+
   const [isLoading, setIsLoading] = useState(false);
   const [totalPrice, setTotalPrice] = useState(listing.price);
   const [dateRange, setDateRange] = useState<Range>(initialDateRange);
