@@ -12,7 +12,7 @@ export type Listing = {
   locationValue: string;
   userId: string;
   price: number;
-  paymentCode: string | null;
+  paymentCode?: string | null;
 };
 
 export type SafeListing = Omit<Listing, "createdAt"> & {
