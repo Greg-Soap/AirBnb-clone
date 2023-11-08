@@ -59,21 +59,17 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
       />
       <hr />
       <div className="p-4">
-        {paymentUrl ? (
-          <a href={paymentUrl} target={"_blank"} rel="noopener noreferrer">
-            <Button
-              disabled={disabled}
-              label={reservation ? "Reserved" : "Reserve"}
-              onClick={onSubmit}
-            />
-          </a>
-        ) : (
+        <a
+          href={paymentUrl ? paymentUrl : ""}
+          target={paymentUrl ? "_blank" : "_self"}
+          rel="noopener noreferrer"
+        >
           <Button
             disabled={disabled}
             label={reservation ? "Reserved" : "Reserve"}
             onClick={onSubmit}
           />
-        )}
+        </a>
       </div>
       <hr />
       <div
