@@ -38,9 +38,6 @@ export async function PATCH(request: Request, { params }: { params: IParams }) {
   if (!currentUser) {
     return NextResponse.error();
   }
-  if (currentUser.isAdmin === false) {
-    return NextResponse.json({ message: "Unauthorized" });
-  }
 
   const { listingId } = params;
 
