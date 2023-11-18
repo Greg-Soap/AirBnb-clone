@@ -68,12 +68,17 @@ const ListingCard: React.FC<ListingCardProps> = ({
 
     return `${format(start, "PP")} - ${format(end, "PP")}`;
   }, [reservation]);
+  let monthlyPrice = 25 * price;
+  const handleDiscountPrices = () => {
+    if (monthlyPrice > 7000) {
+      const discount = monthlyPrice * 0.8;
+      return discount;
+    }
+    return;
+  };
 
   return (
-    <div
-      onClick={() => router.push(`/listings/${data.id}`)}
-      className="col-span-1 cursor-pointer group"
-    >
+    <div className="col-span-1 group">
       <div className="flex flex-col gap-2 w-full">
         <div
           className="
@@ -118,20 +123,36 @@ const ListingCard: React.FC<ListingCardProps> = ({
             <HeartButton listingId={data.id} currentUser={currentUser} />
           </div>
         </div>
-        <div className="font-semibold text-lg truncate">{data.title}</div>
+        <div
+          className="font-semibold text-lg truncate cursor-pointer"
+          onClick={() => router.push(`/listings/${data.id}`)}
+        >
+          {data.title}
+        </div>
         <div className="font-normal text-lg text-neutral-700">
           {location?.region}, {location?.label}
         </div>
         <div className="font-light text-neutral-500">
           {reservationDate || data.category}
         </div>
-        <div className="flex justify-between items-center gap-1">
+        <div className="flex flex-col gap-3 text-sm">
           <div className="flex flex-row items-center gap-1">
             <div className="font-semibold">$ {price}</div>
             {!reservation && <div className="font-light">night</div>}
           </div>
           <div className="flex flex-row items-center gap-1">
-            <div className="font-semibold">$ {25 * price}</div>
+            <div
+              className={` ${
+                monthlyPrice > 7000
+                  ? "line-through font-light text-sm mr-3 text-gray-400"
+                  : "font-semibold"
+              }`}
+            >
+              $ {monthlyPrice}
+            </div>
+            {monthlyPrice > 7000 && (
+              <div className="font-semibold">$ {handleDiscountPrices()}</div>
+            )}
             {!reservation && <div className="font-light">month</div>}
           </div>
         </div>

@@ -78,7 +78,7 @@ const ListingHead: React.FC<ListingHeadProps> = ({
             z-[99999]
           "
         >
-          <EditButton listing={listing} />
+          {currentUser?.isAdmin === true && <EditButton listing={listing} />}
           <HeartButton listingId={id} currentUser={currentUser} />
         </div>
       </div>
