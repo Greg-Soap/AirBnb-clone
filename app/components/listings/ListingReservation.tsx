@@ -30,6 +30,14 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
   disabledDates,
   paymentUrl,
 }) => {
+  let monthlyPrice = 25 * price;
+  const handleDiscountPrices = () => {
+    if (monthlyPrice > 7000) {
+      const discount = monthlyPrice * 0.8;
+      return discount;
+    }
+    return;
+  };
   return (
     <div
       className="
@@ -42,13 +50,29 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
     >
       <div
         className="
-      flex flex-row items-center gap-1 p-4"
+      flex flex-col gap-3 p-4"
       >
-        <div className="text-2xl font-semibold">$ {price}</div>
-        <div className="font-light text-neutral-600">night</div>
-        <div className="font-light text-neutral-600">/</div>
-        <div className="text-2xl font-semibold">$ {25 * price}</div>
-        <div className="font-light text-neutral-600">month</div>
+        <div className="flex gap-1 items-center">
+          <div className="text-xl font-semibold">$ {price}</div>
+          <div className="font-light text-neutral-600">night</div>
+        </div>
+        <div className="flex gap-1 items-center">
+          <div
+            className={`text-xl ${
+              monthlyPrice > 7000
+                ? "line-through font-light mr-3 text-gray-400"
+                : "font-semibold"
+            }`}
+          >
+            $ {monthlyPrice}
+          </div>
+          {monthlyPrice > 7000 && (
+            <div className="text-xl font-semibold">
+              $ {handleDiscountPrices()}
+            </div>
+          )}
+          <div className="font-light text-neutral-600">month</div>
+        </div>
       </div>
       <hr />
       <Calendar
