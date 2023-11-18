@@ -1,8 +1,9 @@
 "use client";
 
+import useUploadImages from "@/app/hooks/useUploadImages";
 import { CldUploadWidget } from "next-cloudinary";
 import Image from "next/image";
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { TbPhotoPlus } from "react-icons/tb";
 
 declare global {
@@ -12,25 +13,30 @@ declare global {
 const uploadPreset = "mikaygfc";
 
 interface ImageUploadProps {
-  onChange: (value: string) => void;
+  onChange: (value: string[]) => void;
   value: string;
 }
 
 const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value }) => {
-  const handleUpload = useCallback(
-    (result: any) => {
-      onChange(result.info.secure_url);
-    },
-    [onChange]
-  );
+  const [uploadsComplete, setUploadsComplete] = useState(false);
+  const { imageUrls, addImage, clearImages } = useUploadImages();
+  const handleUpload = (result: any) => {
+    addImage(result?.info?.secure_url);
+  };
+  useEffect(() => {
+    if (uploadsComplete) {
+      onChange(imageUrls);
+      clearImages();
+      setUploadsComplete(false);
+    }
+  }, [uploadsComplete]);
 
   return (
     <CldUploadWidget
       onUpload={handleUpload}
       uploadPreset={uploadPreset}
-      options={{
-        maxFiles: 1,
-      }}
+      options={{ multiple: true }}
+      onClose={() => setUploadsComplete(true)}
     >
       {({ open }) => {
         return (

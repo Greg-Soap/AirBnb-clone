@@ -8,10 +8,14 @@ import RentModal from "@/app/components/modals/RentModal";
 
 import ToasterProvider from "@/app/providers/ToasterProvider";
 
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 import "./globals.css";
 import ClientOnly from "./components/ClientOnly";
 import getCurrentUser from "./actions/getCurrentUser";
 import Footer from "./components/footer/Footer";
+import EditModalRender from "./components/EditModalRender";
 
 export const metadata = {
   title: "HomeStay Haven - Your Gateway to Affordable Living",
@@ -47,6 +51,7 @@ export default async function RootLayout({
           <RegisterModal />
           <SearchModal />
           <RentModal />
+          <EditModalRender />
           <Navbar currentUser={currentUser} />
           <Footer />
         </ClientOnly>

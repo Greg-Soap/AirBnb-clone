@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import Image from "next/image";
 
@@ -7,13 +7,17 @@ import { SafeUser } from "@/app/types";
 
 import Heading from "../Heading";
 import HeartButton from "../HeartButton";
+import EditButton from "../EditButton";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Autoplay, Pagination } from "swiper/modules";
 
 interface ListingHeadProps {
   title: string;
   locationValue: string;
-  imageSrc: string;
+  imageSrc: string[];
   id: string;
-  currentUser?: SafeUser | null
+  currentUser?: SafeUser | null;
+  listing: any;
 }
 
 const ListingHead: React.FC<ListingHeadProps> = ({
@@ -21,47 +25,65 @@ const ListingHead: React.FC<ListingHeadProps> = ({
   locationValue,
   imageSrc,
   id,
-  currentUser
+  currentUser,
+  listing,
 }) => {
   const { getByValue } = useCountries();
 
   const location = getByValue(locationValue);
 
-  return ( 
+  return (
     <>
       <Heading
         title={title}
         subtitle={`${location?.region}, ${location?.label}`}
       />
-      <div className="
+      <div
+        className="
           w-full
           h-[60vh]
           overflow-hidden 
           rounded-xl
           relative
+          flex
         "
       >
-        <Image
-          src={imageSrc}
-          fill
-          className="object-cover w-full"
-          alt="Image"
-        />
+        <Swiper
+          modules={[Navigation, Autoplay, Pagination]}
+          pagination={{ dynamicBullets: true, dynamicMainBullets: 3 }}
+          navigation={true}
+          autoplay={{ delay: 3000 }}
+          loop={true}
+        >
+          {imageSrc.map((image, idx) => (
+            <SwiperSlide key={idx}>
+              <Image
+                src={image}
+                fill
+                className="object-cover w-full"
+                alt="Image"
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
         <div
           className="
             absolute
             top-5
+            flex
+            gap-4
+            items-center
             right-5
+            z-[99999]
           "
         >
-          <HeartButton 
-            listingId={id}
-            currentUser={currentUser}
-          />
+          <EditButton listing={listing} />
+          <HeartButton listingId={id} currentUser={currentUser} />
         </div>
       </div>
     </>
-   );
-}
- 
+  );
+};
+
 export default ListingHead;

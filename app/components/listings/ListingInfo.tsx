@@ -8,6 +8,8 @@ import { SafeReservation, SafeUser } from "@/app/types";
 
 import Avatar from "../Avatar";
 import ListingCategory from "./ListingCategory";
+import { BiStar } from "react-icons/bi";
+import { AiFillStar } from "react-icons/ai";
 
 const Map = dynamic(() => import("../Map"), {
   ssr: false,
@@ -19,7 +21,7 @@ interface ListingInfoProps {
   guestCount: number;
   roomCount: number;
   bathroomCount: number;
-  
+
   category:
     | {
         icon: IconType;
@@ -28,38 +30,35 @@ interface ListingInfoProps {
       }
     | undefined;
   locationValue: string;
+  rating: number | null;
 }
 
 const ListingInfo: React.FC<ListingInfoProps> = ({
   user,
   description,
   guestCount,
-  
+
   roomCount,
   bathroomCount,
   category,
   locationValue,
+  rating,
 }) => {
-  const { getByValue } = useCountries();
-
-  const coordinates = getByValue(locationValue)?.latlng;
-
   return (
     <div className="col-span-4 flex flex-col gap-8">
       <div className="flex flex-col gap-2">
-        {/* <div 
-          className="
-            text-xl 
-            font-semibold 
-            flex 
-            flex-row 
-            items-center
-            gap-2
-          "
-        >
-          <div>Hosted by {user?.name}</div>
-          <Avatar src={user?.image} />
-        </div> */}
+        {rating && (
+          <div
+            className="text-xl 
+        font-semibold 
+        flex 
+        flex-row 
+        items-center
+        gap-2"
+          >
+            {rating} <AiFillStar />
+          </div>
+        )}
         <div
           className="
             flex 
@@ -91,7 +90,6 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
         {description}
       </div>
       <hr />
-      {/* <Map center={coordinates} /> */}
     </div>
   );
 };
