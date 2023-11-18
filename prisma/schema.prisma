@@ -17,6 +17,7 @@ model User {
   emailVerified   DateTime?
   image           String?
   hashedPassword  String?
+  isAdmin         Boolean @default(false)
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
   favoriteIds     String[] @db.ObjectId
@@ -49,7 +50,7 @@ model Listing {
   id             String @id @default(auto()) @map("_id") @db.ObjectId
   title String
   description String
-  imageSrc String
+  imageSrc String[]
   createdAt DateTime @default(now())
   category  String
   roomCount Int
@@ -59,6 +60,7 @@ model Listing {
   userId String @db.ObjectId
   price Int
   paymentCode String
+starRating Float?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
   reservations Reservation[]
