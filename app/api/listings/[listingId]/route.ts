@@ -45,30 +45,50 @@ export async function PATCH(request: Request, { params }: { params: IParams }) {
     throw new Error("Invalid ID");
   }
   interface BodyProps {
-    imageSrc: string[];
+    // imageSrc: string[];
     category: string;
     price: number;
     starRating: number;
+    paymentCode: string;
+    title: string;
   }
 
   const body: BodyProps = await request.json();
-  const { imageSrc, category, price, starRating } = body;
+  const {
+    // imageSrc,
+    paymentCode,
+    category,
+    price,
+    starRating,
+    title,
+  } = body;
 
   // Object.keys(body).forEach((value: any) => {
   //   if (!body[value]) {
   //     NextResponse.error();
   //   }
   // });
-  if ([imageSrc, category, price, starRating].some((value) => !value)) {
+  if (
+    [
+      // imageSrc,
+      paymentCode,
+      title,
+      category,
+      price,
+      starRating,
+    ].some((value) => !value)
+  ) {
     NextResponse.error();
   }
 
   const listing = await prisma.listing.update({
     where: { id: listingId },
     data: {
-      imageSrc,
+      // imageSrc,
       category,
       starRating,
+      paymentCode,
+      title,
       price,
       userId: currentUser.id,
     },

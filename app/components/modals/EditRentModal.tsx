@@ -21,8 +21,8 @@ import useEditRentModal from "@/app/hooks/useEditRentModal";
 
 enum STEPS {
   CATEGORY = 0,
-  IMAGES = 1,
-  PRICE = 2,
+  // IMAGES = 1,
+  PRICE = 1,
 }
 
 const EditRentModal = () => {
@@ -55,7 +55,7 @@ const EditRentModal = () => {
     },
   });
   const category = watch("category");
-  const imageSrc = watch("imageSrc");
+  // const imageSrc = watch("imageSrc");
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
@@ -143,27 +143,36 @@ const EditRentModal = () => {
     </div>
   );
 
-  if (step === STEPS.IMAGES) {
-    bodyContent = (
-      <div className="flex flex-col gap-8">
-        <Heading
-          title="Add a photo of your place"
-          subtitle="Show guests what your place looks like!"
-        />
-        <ImageUpload
-          onChange={(value) => setCustomValue("imageSrc", value)}
-          value={imageSrc[0]}
-        />
-      </div>
-    );
-  }
+  // if (step === STEPS.IMAGES) {
+  //   bodyContent = (
+  //     <div className="flex flex-col gap-8">
+  //       <Heading
+  //         title="Add a photo of your place"
+  //         subtitle="Show guests what your place looks like!"
+  //       />
+  //       <ImageUpload
+  //         onChange={(value) => setCustomValue("imageSrc", value)}
+  //         value={imageSrc[0]}
+  //       />
+  //     </div>
+  //   );
+  // }
 
   if (step === STEPS.PRICE) {
     bodyContent = (
       <div className="flex flex-col gap-8">
         <Heading
-          title="Now, set your price and Rating of Home"
-          subtitle="How much do you charge per night?"
+          title="Update Rest of Information"
+          subtitle="Click update when done inputting."
+        />
+        <Input
+          id="title"
+          label="Property Name"
+          type="text"
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
         />
         <Input
           id="price"
@@ -179,6 +188,15 @@ const EditRentModal = () => {
           id="starRating"
           label="Rating"
           type="number"
+          disabled={isLoading}
+          register={register}
+          errors={errors}
+          required
+        />
+        <Input
+          id="paymentCode"
+          label="Payment Link"
+          type="text"
           disabled={isLoading}
           register={register}
           errors={errors}

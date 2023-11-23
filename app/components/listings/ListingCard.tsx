@@ -94,7 +94,9 @@ const ListingCard: React.FC<ListingCardProps> = ({
             pagination={{ dynamicBullets: true, dynamicMainBullets: 3 }}
             navigation={true}
             loop={true}
-            style={{ height: "100%" }}
+            style={{
+              height: "100%",
+            }}
           >
             {data.imageSrc.map((image, idx) => (
               <SwiperSlide key={idx}>
