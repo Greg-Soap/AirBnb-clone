@@ -56,7 +56,6 @@ const ListingHead: React.FC<ListingHeadProps> = ({
           autoplay={{ delay: 3000 }}
           style={
             {
-              "--swiper-theme-color": "fff",
               "--swiper-navigation-size": "15px",
             } as React.CSSProperties
           }
