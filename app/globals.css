@@ -10,6 +10,8 @@ html,
 body,
 :root {
   height: 100%;
+  --swiper-navigation-color: "#fff";
+  --swiper-navigation-size: "15px";
 }
 
 .leaflet-bottom,
@@ -29,4 +31,8 @@ body,
 }
 .swiper {
   width: 100% !important;
+}
+.swiper-button-next,
+.swiper-button-prev {
+  @apply rounded-full bg-sky-500/80 border-sky-500 border-2 hover:bg-sky-500 p-3 !important;
 }

@@ -42,6 +42,7 @@ const ListingHead: React.FC<ListingHeadProps> = ({
         className="
           w-full
           h-[60vh]
+          lg:h-[75vh]
           overflow-hidden 
           rounded-xl
           relative
@@ -75,7 +76,7 @@ const ListingHead: React.FC<ListingHeadProps> = ({
             gap-4
             items-center
             right-5
-            z-[99999]
+            z-[9999]
           "
         >
           {currentUser?.isAdmin === true && <EditButton listing={listing} />}
