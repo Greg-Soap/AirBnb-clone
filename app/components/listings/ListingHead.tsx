@@ -54,6 +54,12 @@ const ListingHead: React.FC<ListingHeadProps> = ({
           pagination={{ dynamicBullets: true, dynamicMainBullets: 3 }}
           navigation={true}
           autoplay={{ delay: 3000 }}
+          style={
+            {
+              "--swiper-theme-color": "fff",
+              "--swiper-navigation-size": "15px",
+            } as React.CSSProperties
+          }
           loop={true}
         >
           {imageSrc.map((image, idx) => (
