@@ -97,7 +97,6 @@ const ListingCard: React.FC<ListingCardProps> = ({
             style={
               {
                 height: "100%",
-                "--swiper-theme-color": "fff",
                 "--swiper-navigation-size": "15px",
               } as React.CSSProperties
             }
