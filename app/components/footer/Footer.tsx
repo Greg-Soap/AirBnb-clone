@@ -9,8 +9,14 @@ const Footer: React.FC = () => {
           <div className="text-sm font-light">
             &copy; 2023 HomeStay Haven, All rights reserved.
           </div>
-          <div className="text-sm font-light">
-            Contact us at : <Link href={"#"}>support@homestayhaven</Link>
+          <div className="flex flex-col gap-3 items-center md:flex-row">
+            <div className="text-sm font-light underline">
+              <Link href={"/about"}>About Us</Link>
+            </div>
+            <div className="text-sm font-light">
+              Contact us at
+              <Link href={"tel:(424) 379-1083"}> (424) 379-1083</Link>
+            </div>
           </div>
         </div>
       </Container>
