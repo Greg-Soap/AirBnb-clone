@@ -10,7 +10,9 @@ html,
 body,
 :root {
   height: 100%;
-  --swiper-navigation-color: "#fff";
+}
+:root {
+  --swiper-theme-color: "#fff";
   --swiper-navigation-size: "15px";
 }
 
@@ -34,5 +36,5 @@ body,
 }
 .swiper-button-next,
 .swiper-button-prev {
-  @apply rounded-full bg-sky-500/80 border-sky-500 border-2 hover:bg-sky-500 p-3 !important;
+  @apply rounded-full bg-sky-500/50 border-sky-500 border-2 hover:bg-sky-500 p-2 !important;
 }
