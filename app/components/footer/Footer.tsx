@@ -10,7 +10,7 @@ const Footer: React.FC = () => {
             &copy; 2023 HomeStay Haven, All rights reserved.
           </div>
           <div className="text-sm font-light">
-            Contact us at : <Link href={"#"}>+44 7700 900077</Link>
+            Contact us at : <Link href={"#"}>support@homestayhaven</Link>
           </div>
         </div>
       </Container>
